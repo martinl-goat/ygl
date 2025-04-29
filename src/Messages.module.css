@@ -1,0 +1,35 @@
+.msgtable {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1pt solid #444;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    th {
+      text-align: left;
+
+      &:nth-child(1) {
+        width: 50px;
+      }
+
+      &:nth-child(2) {
+        width: 250px;
+      }
+    }
+
+    td {
+      font-family: monospace;
+
+      &:nth-child(3) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
