@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      <h1>You've goat logs!</h1>
+      <h1>You've 🐐 logs! </h1>
       <div className="card">
         <label>
           URL: <input value={url} onChange={onUrlChange} size={51} />

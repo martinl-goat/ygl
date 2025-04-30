@@ -4,21 +4,32 @@
   border-collapse: collapse;
 
   tr {
-    border-bottom: 1pt solid #444;
+    &[data-expanded="false"] {
+      border-bottom: 1pt solid #bbb;
+    }
 
     &:last-child {
       border-bottom: none;
     }
 
+    &[data-rowtype="row"]:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+    &[data-rowtype="expansion"]:nth-child(odd) {
+      background-color: #f4f4f4;
+    }
+
     th {
       text-align: left;
+      background-color: #eee;
+      padding: 0.5em 0;
 
       &:nth-child(1) {
         width: 50px;
       }
 
       &:nth-child(2) {
-        width: 250px;
+        width: 225px;
       }
     }
 
