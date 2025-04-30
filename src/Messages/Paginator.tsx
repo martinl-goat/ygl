@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import classes from "./Paginator.module.css";
 
 interface PaginatorProps {
   pageSize: number;
@@ -31,7 +32,7 @@ function Paginator({
   console.log("Paginator: rendering, message count", messagesCount);
 
   return (
-    <>
+    <div className={classes.paginator}>
       <button
         type="button"
         onClick={paginateFirst}
@@ -62,7 +63,7 @@ function Paginator({
         &rarr;&rarr;
       </button>
       Total messages: {messagesCount}
-    </>
+    </div>
   );
 }
 

@@ -1,0 +1,16 @@
+.app {
+  max-width: 1280px;
+  padding: 2rem;
+}
+
+.controls {
+  padding: 1em 0;
+  display: flex;
+  column-gap: 1em;
+  align-items: center;
+}
+
+.urlInput {
+  font-size: medium;
+  padding: 0.2em;
+}

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import "./App.css";
+import classes from "./App.module.css";
 import { Messages } from "./Messages/Messages";
 import { useMessages } from "./data/useMessages";
 
@@ -26,11 +26,17 @@ function App() {
   console.log("App: rendering, data length", data.length, "working", working);
 
   return (
-    <>
+    <div className={classes.app}>
       <h1>You've 🐐 logs! </h1>
-      <div className="card">
+      <div className={classes.controls}>
         <label>
-          URL: <input value={url} onChange={onUrlChange} size={51} />
+          URL:{" "}
+          <input
+            value={url}
+            onChange={onUrlChange}
+            size={51}
+            className={classes.urlInput}
+          />
         </label>
         <label>
           No cache:
@@ -39,10 +45,10 @@ function App() {
         <button type="button" onClick={refresh} disabled={working}>
           Go!
         </button>
-        {working && "Working"}
+        {working && "Working…"}
       </div>
       <Messages messages={data} />
-    </>
+    </div>
   );
 }
 

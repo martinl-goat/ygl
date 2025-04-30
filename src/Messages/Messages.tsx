@@ -23,7 +23,7 @@ function Messages({ messages }: MessagesProps) {
   ));
 
   return (
-    <div className="card">
+    <>
       {havePages && <Timeline messages={messages} />}
       {!havePages && <div>No messages yet. Press Go!</div>}
       {havePages && (
@@ -46,7 +46,7 @@ function Messages({ messages }: MessagesProps) {
           <tbody>{messageRows}</tbody>
         </table>
       )}
-    </div>
+    </>
   );
 }
 
