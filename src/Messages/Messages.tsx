@@ -19,7 +19,10 @@ function Messages({ messages }: MessagesProps) {
   console.log("Messages: rendering", messages.length, pagedMessages.length);
 
   const messageRows = pagedMessages.map((msg, idx) => (
-    <Message key={idx} message={msg} />
+    // by including the current page in the key, new Message instances are
+    // forced, which is needed to close expanded entries on page change.
+    // TODO: it's a somewhat ugly bugfix – instead, move expansion state from Message to here
+    <Message key={`${currentPage}${idx}`} message={msg} />
   ));
 
   return (

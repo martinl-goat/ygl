@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { MessageRecord } from "../types";
+import classes from "./Message.module.css";
 
 interface MessageProps {
   message: MessageRecord;
@@ -32,7 +33,7 @@ function Message({ message }: MessageProps) {
         <tr data-rowtype="expansion">
           <td />
           <td colSpan={2}>
-            <pre>
+            <pre className={classes.expansionPre}>
               <code>{JSON.stringify(message, null, 2)}</code>
             </pre>
           </td>
