@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Message } from "./Message";
 import classes from "./Messages.module.css";
+import { Paginator } from "./Paginator";
+import { Timeline } from "./Timeline";
 import { MessageRecord } from "./types";
 
 interface MessagesProps {
@@ -7,30 +10,42 @@ interface MessagesProps {
 }
 
 function Messages({ messages }: MessagesProps) {
-  const offset = 0;
+  const [currentPage, setCurrentPage] = useState(0);
   const pageSize = 20;
-  const pagedMessages = messages.slice(offset, pageSize);
+  const offset = currentPage * pageSize;
+  const havePages = messages.length > 0;
+  const pagedMessages = messages.slice(offset, offset + pageSize);
 
   console.log("Messages: rendering", messages.length, pagedMessages.length);
 
-  // TODO: think about performance here
   const messageRows = pagedMessages.map((msg, idx) => (
     <Message key={idx} message={msg} />
   ));
 
   return (
     <div className="card">
-      Total messages: {messages.length}, rendering: {pagedMessages.length}
-      <table className={classes.msgtable}>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Time</th>
-            <th>Event</th>
-          </tr>
-        </thead>
-        <tbody>{messageRows}</tbody>
-      </table>
+      {havePages && <Timeline messages={messages} />}
+      {!havePages && <div>No messages yet. Press Go!</div>}
+      {havePages && (
+        <Paginator
+          pageSize={pageSize}
+          messagesCount={messages.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+      {havePages && (
+        <table className={classes.msgtable}>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Time</th>
+              <th>Event</th>
+            </tr>
+          </thead>
+          <tbody>{messageRows}</tbody>
+        </table>
+      )}
     </div>
   );
 }

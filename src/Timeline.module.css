@@ -1,0 +1,28 @@
+.timeline {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  column-gap: 0.5em;
+  padding: 0.5em;
+  overflow: scroll;
+  border: 1px solid #ddd;
+
+  .bucket {
+    .bar {
+      display: flex;
+      flex-direction: column-reverse;
+      height: 4em;
+
+      .fill {
+        background-color: blue;
+        border-radius: 8px 8px 0 0;
+      }
+    }
+
+    .label {
+      font-size: x-small;
+      text-wrap: nowrap;
+      text-align: center;
+    }
+  }
+}

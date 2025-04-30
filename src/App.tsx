@@ -34,7 +34,7 @@ function App() {
           URL: <input value={url} onChange={onUrlChange} size={51} />
         </label>
         <button type="button" onClick={goClick} disabled={!done}>
-          Go
+          Go!
         </button>
         {!done && "Working"}
       </div>
