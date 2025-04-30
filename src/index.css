@@ -51,7 +51,7 @@ button:hover {
 
   &:disabled {
     border-color: transparent;
-    cursor: progress;
+    cursor: not-allowed;
   }
 }
 button:focus,
