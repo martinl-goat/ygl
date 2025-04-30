@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import classes from "./App.module.css";
-import { Messages } from "./Messages/Messages";
+import { Messages } from "./messages/Messages";
 import { useMessages } from "./data/useMessages";
 
 const defaultUrl = "https://s3.amazonaws.com/io.cribl.c021.takehome/cribl.log";

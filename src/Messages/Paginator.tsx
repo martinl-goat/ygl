@@ -37,6 +37,7 @@ function Paginator({
         type="button"
         onClick={paginateFirst}
         disabled={currentPage === 0}
+        data-testid="first"
       >
         &larr;&larr;
       </button>
@@ -44,14 +45,18 @@ function Paginator({
         type="button"
         onClick={paginatePrevious}
         disabled={currentPage === 0}
+        data-testid="previous"
       >
         &larr;
       </button>
-      {currentPage + 1} / {pages}
+      <span data-testid="position">
+        {currentPage + 1} / {pages}
+      </span>
       <button
         type="button"
         onClick={paginateNext}
         disabled={currentPage === pages - 1}
+        data-testid="next"
       >
         &rarr;
       </button>
@@ -59,10 +64,11 @@ function Paginator({
         type="button"
         onClick={paginateLast}
         disabled={currentPage === pages - 1}
+        data-testid="last"
       >
         &rarr;&rarr;
       </button>
-      Total messages: {messagesCount}
+      <span data-testid="total">Total messages: {messagesCount}</span>
     </div>
   );
 }

@@ -1,33 +1,11 @@
 import { useMemo, useState } from "react";
 import { MessageRecord } from "../types";
 import classes from "./Timeline.module.css";
+import { bucketFor, TimelineUnit } from "./utils";
 
 interface TimelineProps {
   messages: MessageRecord[];
 }
-
-type TimelineUnit = "hour" | "day";
-
-const bucketFor = (unit: TimelineUnit, timestamp: number): string => {
-  if (unit === "hour") {
-    const date = new Date(timestamp);
-    date.setUTCMilliseconds(0);
-    date.setUTCSeconds(0);
-    date.setUTCMinutes(0);
-    const result = date.toISOString();
-    return result.substring(0, result.lastIndexOf(".")).replace("T", " ");
-  } else if (unit === "day") {
-    const date = new Date(timestamp);
-    date.setUTCMilliseconds(0);
-    date.setUTCSeconds(0);
-    date.setUTCMinutes(0);
-    date.setUTCHours(0);
-    const result = date.toISOString();
-    return result.substring(0, result.indexOf("T"));
-  } else {
-    throw new Error(`Unsupported unit: ${unit}`);
-  }
-};
 
 function Timeline({ messages }: TimelineProps) {
   const [unit] = useState<TimelineUnit>("day");
@@ -53,7 +31,7 @@ function Timeline({ messages }: TimelineProps) {
       .map((bucket) => [
         bucket,
         buckets[bucket],
-        (buckets[bucket] / max) * 100,
+        Math.round((buckets[bucket] / max) * 100),
       ]);
 
     return results;
@@ -65,11 +43,12 @@ function Timeline({ messages }: TimelineProps) {
     <div className={classes.timeline}>
       {buckets.map(([bucket, count, percentage]) => {
         return (
-          <div className={classes.bucket}>
+          <div className={classes.bucket} key={bucket}>
             <div className={classes.bar}>
               <div
                 className={classes.fill}
                 style={{ height: `${percentage}%` }}
+                data-testid="fill"
               />
               <div className={classes.label}>{count}</div>
             </div>
