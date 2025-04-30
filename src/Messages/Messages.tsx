@@ -9,6 +9,10 @@ interface MessagesProps {
   messages: MessageRecord[];
 }
 
+/**
+ * A table of messages with a paginator and timeline. Renders two columns, Time and Event.
+ * @param messages - An array of objects. Objects should contain `_time`.
+ */
 function Messages({ messages }: MessagesProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const pageSize = 20;

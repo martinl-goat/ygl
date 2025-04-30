@@ -5,6 +5,16 @@ interface ReadNDJSONArguments {
   emitMessageCallback: (msg: MessageRecord[]) => void;
 }
 
+/**
+ * Reads NDJSON data from a `TextDecoderStream` reader. Separates messages by newlines,
+ * and delivers them in an array via `emitMessageCallback`. In its current implementation,
+ * the first 100 messages will be emitted immediately (separately), further messages are
+ * emitted in blocks of 1024 messages.
+ *
+ * Per spec, invalid JSON throws. Also throws on empty messages (e.g. `\n\n`).
+ * @param reader - The TextDecoderStream reader input.
+ * @param emitMessageCallback - Called with an array of parsed messages (multiple times if needed).
+ */
 async function readNDJSON({
   reader,
   emitMessageCallback,
@@ -36,7 +46,7 @@ async function readNDJSON({
         const messages = chunkBuffer.split(NL);
         while (messages.length > 1) {
           // trimEnd() should get rid of carriage returns, which the NDJSON spec allows,
-          // though it seems JSON.parse doesn't care about it anyway, look into it
+          // though it seems JSON.parse doesn't care about it anyway
           const message = messages.shift()!.trimEnd();
           try {
             const parsedMessage: MessageRecord = JSON.parse(message);

@@ -7,9 +7,15 @@ interface TimelineProps {
   messages: MessageRecord[];
 }
 
+/**
+ * A basic timeline that buckets messages and displays bucket counts and
+ * relative bucket sizes. Only "day" is supported as bucket unit.
+ * @param messages - An array of objects. Objects should contain `_time`.
+ */
 function Timeline({ messages }: TimelineProps) {
-  const [unit] = useState<TimelineUnit>("day");
+  const [unit] = useState<TimelineUnit>("day"); // TODO: add support for other units
 
+  // calculate bucket keys, memoized since it can be expensive for a large number of messages
   const buckets = useMemo(() => {
     console.log("computing timeline data", unit, "messages", messages.length);
 
@@ -26,15 +32,13 @@ function Timeline({ messages }: TimelineProps) {
       0,
     );
 
-    const results = Object.keys(buckets)
+    return Object.keys(buckets)
       .sort()
       .map((bucket) => [
         bucket,
         buckets[bucket],
         Math.round((buckets[bucket] / max) * 100),
       ]);
-
-    return results;
   }, [messages, unit]);
 
   console.log("Timeline: rendering, bucket count:", buckets.length);

@@ -8,6 +8,14 @@ interface UseMessagesResult {
   refresh: () => void;
 }
 
+/**
+ * A hook that fetches NDJSON content and delivers parsed messages as they arrive.
+ * See `readNDJSON` and `downloadMessages` for parsing and fetching details.
+ * @param url - The URL to download data from.
+ * @param noCache - If `true` skip the cache.
+ * @returns object - With `data` (array of messages), `working` (boolean while active), and
+ *   `refresh` (function to start fetching).
+ */
 function useMessages(url: string, noCache: boolean): UseMessagesResult {
   const [messages, setMessages] = useState<MessageRecord[]>([]);
   const [working, setWorking] = useState(false);

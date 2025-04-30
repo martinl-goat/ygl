@@ -6,6 +6,10 @@ interface MessageProps {
   message: MessageRecord;
 }
 
+/**
+ * A single unstyled Message rendering as `tr`. See `Messages`.
+ * @param message - An object. `_time` will be parsed by `Date` in first column, if present.
+ */
 function Message({ message }: MessageProps) {
   const [expanded, setExpanded] = useState(false);
 

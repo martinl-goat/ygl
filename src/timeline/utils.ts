@@ -1,6 +1,14 @@
 type TimelineUnit = "hour" | "day";
 
+/**
+ * Create bucket string keys for a given timestamp.
+ * @param unit - `day` or `hour`.
+ * @param timestamp - The timestamp as `number`.
+ * @returns A bucket key, e.g. `2024-08-06` or `2024-08-06 22:00:00`
+ */
 function bucketFor(unit: TimelineUnit, timestamp: number): string {
+  // TODO: use a real date library instead of handling date manipulation manually
+
   if (unit === "hour") {
     const date = new Date(timestamp);
     date.setUTCMilliseconds(0);

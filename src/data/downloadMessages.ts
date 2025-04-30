@@ -8,6 +8,14 @@ interface DownloadMessageArguments {
   doneCallback: () => void;
 }
 
+/**
+ * Retrieves NDJSON content and calls `emitMessageCallback` multiple times, with an array of
+ * parsed messages. See `readNDJSON` for parsing details.
+ * @param url - The URL to download data from.
+ * @param noCache - If `true`, `fetch` is told to skip the cache.
+ * @param emitMessageCallback - Called with an array of parsed messages (multiple times if needed).
+ * @param doneCallback – Called upon completion.
+ */
 async function downloadMessages({
   url,
   noCache,
@@ -33,7 +41,7 @@ async function downloadMessages({
   }
 
   console.log("getLogs: done");
-  doneCallback();
+  doneCallback(); // TODO: remove this, it's unnecessary
 }
 
 export { downloadMessages };

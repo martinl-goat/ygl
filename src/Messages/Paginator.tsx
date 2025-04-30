@@ -8,6 +8,14 @@ interface PaginatorProps {
   setCurrentPage: (page: number) => void;
 }
 
+/**
+ * A classic paginator with first, previous, next, and last buttons, showing
+ * the current page, the page count, and the total messages count.
+ * @param currentPage - The current page index (starts at zero).
+ * @param setCurrentPage - A React `useState` setter for the current page index.
+ * @param pageSize - The page size, e.g. 20.
+ * @param messagesCount - The total number of messages.
+ */
 function Paginator({
   currentPage,
   setCurrentPage,
