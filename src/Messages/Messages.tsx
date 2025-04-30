@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { Timeline } from "../timeline/Timeline";
+import { MessageRecord } from "../types";
 import { Message } from "./Message";
 import classes from "./Messages.module.css";
 import { Paginator } from "./Paginator";
-import { Timeline } from "./Timeline";
-import { MessageRecord } from "./types";
 
 interface MessagesProps {
   messages: MessageRecord[];

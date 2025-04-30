@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
+import { MessageRecord } from "../types";
 import classes from "./Timeline.module.css";
-import { MessageRecord } from "./types";
 
 interface TimelineProps {
   messages: MessageRecord[];
@@ -29,7 +29,7 @@ const bucketFor = (unit: TimelineUnit, timestamp: number): string => {
 };
 
 function Timeline({ messages }: TimelineProps) {
-  const [unit, _] = useState<TimelineUnit>("day");
+  const [unit] = useState<TimelineUnit>("day");
 
   const buckets = useMemo(() => {
     console.log("computing timeline data", unit, "messages", messages.length);
@@ -58,7 +58,7 @@ function Timeline({ messages }: TimelineProps) {
     return results;
   }, [messages, unit]);
 
-  console.log("Timeline: rendering, buckets:", buckets);
+  console.log("Timeline: rendering, bucket count:", buckets.length);
 
   return (
     <div className={classes.timeline}>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { MessageRecord } from "../types";
 import { downloadMessages } from "./downloadMessages";
-import { MessageRecord } from "./types";
 
 interface UseMessagesResult {
   data: MessageRecord[];

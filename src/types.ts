@@ -1,4 +1,5 @@
-type MessageRecord = Record<string, unknown>;
-type NewMessageCallback = (msg: MessageRecord[]) => void;
+// types that are used throughout the application go in here
 
-export type { MessageRecord, NewMessageCallback };
+type MessageRecord = Record<string, unknown>;
+
+export type { MessageRecord };

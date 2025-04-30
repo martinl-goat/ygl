@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { MessageRecord } from "./types";
+import { MessageRecord } from "../types";
 
 interface MessageProps {
   message: MessageRecord;

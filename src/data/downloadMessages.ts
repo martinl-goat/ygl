@@ -1,4 +1,6 @@
-import { MessageRecord, NewMessageCallback } from "./types";
+import { MessageRecord } from "../types";
+
+type NewMessageCallback = (msg: MessageRecord[]) => void;
 
 interface DownloadMessageArguments {
   url: string;

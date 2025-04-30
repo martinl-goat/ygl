@@ -28,7 +28,7 @@ function Paginator({
     setCurrentPage(pages - 1);
   }, [setCurrentPage, pages]);
 
-  console.log("Paginator: rendering, messages count", messagesCount);
+  console.log("Paginator: rendering, message count", messagesCount);
 
   return (
     <>
